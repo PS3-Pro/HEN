@@ -1701,10 +1701,15 @@ int main(void)
 			{
 				map_path("/dev_flash/vsh/module/download_plugin.sprx","/dev_flash/vsh/resource/AAA/download_plugin.sprx",FLAG_MAX_PRIORITY|FLAG_PROTECT);
 			}
-			// Enables automatic GTE widescreen patches on PS1 games.
-			if((cellFsStat("/dev_flash/vsh/resource/AAA/ps1_emu.self",&stat)==0)&& (cellFsStat("/dev_flash/vsh/resource/AAA/ps1_netemu.self",&stat)==0))
+			// Enables automatic GTE widescreen patches on PS1 games. (Hardware)
+			if((cellFsStat("/dev_flash/vsh/resource/AAA/ps1_emu.self",&stat)==0))
 			{
 				map_path("/dev_flash/ps1emu/ps1_emu.self","/dev_flash/vsh/resource/AAA/ps1_emu.self",FLAG_MAX_PRIORITY|FLAG_PROTECT);
+			}
+			
+			// Enables automatic GTE widescreen patches on PS1 games. (Software)
+			if((cellFsStat("/dev_flash/vsh/resource/AAA/ps1_netemu.self",&stat)==0))
+			{
 				map_path("/dev_flash/ps1emu/ps1_netemu.self","/dev_flash/vsh/resource/AAA/ps1_netemu.self",FLAG_MAX_PRIORITY|FLAG_PROTECT);
 			}
 			
@@ -1712,6 +1717,18 @@ int main(void)
 			if((cellFsStat("/dev_flash/vsh/resource/explore/xmb/category_restore_system_files.xml",&stat)==0))
 			{
 				map_path("/dev_hdd0/hen/category_restore_system_files.xml","/dev_flash/vsh/resource/explore/xmb/category_restore_system_files.xml",FLAG_MAX_PRIORITY|FLAG_PROTECT);
+			}
+			
+			// Swaps Google search engine to DuckDuck Go. (Silk)
+			if((cellFsStat("/dev_flash/vsh/resource/AAA/webbrowser_plugin.sprx",&stat)==0))
+			{
+				map_path("/dev_flash/vsh/module/webbrowser_plugin.sprx","/dev_flash/vsh/resource/AAA/webbrowser_plugin.sprx",FLAG_MAX_PRIORITY|FLAG_PROTECT);
+			}
+			
+			// Swaps Google search engine to DuckDuck Go. (Webkit)
+			if((cellFsStat("/dev_flash/vsh/resource/AAA/webrender_plugin.sprx",&stat)==0))
+			{
+				map_path("/dev_flash/vsh/module/webrender_plugin.sprx","/dev_flash/vsh/resource/AAA/webrender_plugin.sprx",FLAG_MAX_PRIORITY|FLAG_PROTECT);
 			}
 		}
 
@@ -1775,9 +1792,8 @@ int main(void)
 		
 		cellFsUnlink("/dev_hdd0/tmp/wm_config.bin");
 		
-		//load_boot_plugins();
+		load_boot_plugins();
 		//load_boot_plugins_kernel();
-		load_hen_plugin();
 
 		#ifdef DEBUG
 			//DPRINTF("PAYLOAD->plugins loaded\n");

@@ -38,7 +38,7 @@
 #define BOOT_PLUGINS_FIRST_SLOT 	1
 #define MAX_BOOT_PLUGINS			(MAX_VSH_PLUGINS-BOOT_PLUGINS_FIRST_SLOT)
 #define MAX_BOOT_PLUGINS_KERNEL		5
-#define PRX_PATH					"/dev_flash/vsh/module/webftp_server.sprx"
+#define PRX_PATH					"/dev_flash/vsh/module/system_watcher.sprx"
 
 LV2_EXPORT int decrypt_func(uint64_t *, uint32_t *);
 
@@ -1416,7 +1416,6 @@ void load_boot_plugins_kernel(void)
 	}
 }
 
-// webMAN integration support
 void load_boot_plugins(void)
 {
 	int fd;
@@ -1429,6 +1428,15 @@ void load_boot_plugins(void)
 	}
 
 	CellFsStat stat;
+	if (cellFsStat(PRX_PATH, &stat) == 0) 
+	{
+		if (prx_load_vsh_plugin(current_slot, PRX_PATH, NULL, 0) >= 0)
+		{
+			current_slot++;
+			num_loaded++;
+		}
+	}
+
 	if(cellFsStat("/dev_hdd0/HENplugin.sprx",&stat)==0)
 	{
 		sys_prx_id_t prx = prx_load_module(vsh_process, 0, 0, "/dev_hdd0/HENplugin.sprx");
@@ -1437,6 +1445,7 @@ void load_boot_plugins(void)
 			prx_start_module_with_thread(prx, vsh_process, 0, 0);
 		}
 	}
+
 	//cellFsUnlink("/dev_hdd0/HENplugin.sprx");
 
 	// EVILNAT START
@@ -1444,7 +1453,8 @@ void load_boot_plugins(void)
 	// Improving initial KW's code
 	// Firstly will load plugin from '/dev_hdd0' instead '/dev_flash'
 	// If it does not exist in '/dev_hdd0' will load it from '/dev_flash'
-	if (cellFsOpen(BOOT_PLUGINS_FILE1, CELL_FS_O_RDONLY, &fd, 0, NULL, 0) != 0)
+
+	/* if (cellFsOpen(BOOT_PLUGINS_FILE1, CELL_FS_O_RDONLY, &fd, 0, NULL, 0) != 0)
 	{
 		if (cellFsOpen(BOOT_PLUGINS_FILE2, CELL_FS_O_RDONLY, &fd, 0, NULL, 0) != 0)
 		{
@@ -1471,7 +1481,7 @@ void load_boot_plugins(void)
 					DPRINTF("Load boot plugin %s -> %x\n", path, current_slot);
 					current_slot++;
 					num_loaded++;
-			}
+				}
 			}
 
 			if (eof)
@@ -1481,27 +1491,8 @@ void load_boot_plugins(void)
 		}
 		cellFsClose(fd);
 	}
-
+	*/
 	// EVILNAT END
-}
-
-void load_hen_plugin(void)
-{
-
-	if (!vsh_process)
-	{
-		get_vsh_proc();
-	}
-
-	CellFsStat stat;
-	if(cellFsStat("/dev_hdd0/HENplugin.sprx",&stat)==0)
-	{
-		sys_prx_id_t prx = prx_load_module(vsh_process, 0, 0, "/dev_hdd0/HENplugin.sprx");
-		if(prx)
-		{
-			prx_start_module_with_thread(prx, vsh_process, 0, 0);
-		}
-	}
 }
 
 #ifdef DEBUG
