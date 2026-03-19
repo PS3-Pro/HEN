@@ -3,7 +3,7 @@
 # Homebrew Enabler Pro™
 A exploit that allows the console to run unsigned code.<br>
 
-[![Github downloads (by repository)](https://img.shields.io/github/downloads/LuanTeles/HEN/total?style=social)](https://github.com/LuanTeles/HEN/releases/)
+[![Github downloads (by repository)](https://img.shields.io/github/downloads/PS3-Pro/HEN/total?style=social)](https://github.com/PS3-Pro/HEN/releases/)
 
 ![Hen Disabled](https://user-images.githubusercontent.com/74815634/148464759-62bed1d8-b944-411a-b9f5-209a5d73b1b4.png)
 ![Hen Enabled](https://user-images.githubusercontent.com/74815634/148464786-72e35270-5e68-4abd-996f-10fb53713dda.png)
@@ -27,20 +27,19 @@ A exploit that allows the console to run unsigned code.<br>
 
 ***Requires PS3™ 4K Pro installed***
  
-#  Changelogs (by PS3XPloit Team)
- 
+#  Changelogs
+
 <details><summary>Spoiler</summary>
 
  <br>
  
 <details><summary>v3.x.x</summary>
  
-# v3.5.1
-### Payload: 
--Added: BadWDSD support.<br>
--Added: ISO Decrypt on-the-fly.<br>
+# v3.5.0
+### Global:
+-Added: Support for 4.93 CEX firmware.<br>
 
-# v3.5.0 (Exclusive)
+# v3.4.2 (Exclusive)
 ### Plugins:
 -Added: Check for map_path to avoid kernel panic if destination file is missing.<br>
 -Added: Automatic XMB™ reload if more than one user exists.<br>
@@ -49,9 +48,22 @@ A exploit that allows the console to run unsigned code.<br>
 -Added: Ability to restore syscalls.<br>
 -Added: PSN™ Blocker (PSN™ Access is blocked if syscalls are enabled).<br>
 
+# v3.4.1
+### Plugin:
+-Added: BadWDSD support.<br>
+
+### Payload:
+-Added: Support for BadHTAB and BadWDSD exploits.<br>
+-Added: Conditional timer for Retail and NPDRM self to reduce hanging when launching homebrew.<br>
+-Added: ISO Decrypt on-the-fly.<br>
+
+### Resources:
+-Added: Support for installing qCFW.<br>
+
 # v3.4.0
 ### Global:
 -Added: Support for Firmware 4.92.<br>
+
 ### Plugin:
 -Added: DLOG function for output to usb000. (Developers Only)<br>
 -Added: HEN restore functionality for new package that supports HEN surviving an HDD reformat.<br>
@@ -96,15 +108,15 @@ A exploit that allows the console to run unsigned code.<br>
 ### Plugin:
 -Added: Automatic cleaning of logs sent when connecting to PSN™ in order to reduce the risk of a ban. (CI.TMP, MI.TMP and PTL.TMP)<br>
 -Added: Automatic reboot after successful initial HEN installation from Network and USB.<br>
--Added: Blacklist access to homebrews NP0APOLLO / NP00PKGI3 when CFW syscalls are disabled by @aldostools.<br>
+-Added: Blacklist access to homebrews NP0APOLLO / NP00PKGI3 when CFW syscalls are disabled.<br>
 -Added: Dynarec Support.<br>
--Added: Libcrypt Support for PS1 games (LSF/SBI files) by @aldostools.<br>
+-Added: Libcrypt Support for PS1 games (LSF/SBI files)<br>
 -Added: PSX Bios patched with product code 0x85 for PAL games.<br>
--Added: Support for .RAP extension (in addition to .rap) by @aldostools.<br>
+-Added: Support for .RAP extension. (in addition to .rap)<br>
 -Added: Toggle for Audio Patch.<br>
 -Added: Toggle for Build types. (DEV/Release)<br>
 -Added: Toggle to clean Web Browser user information upon HEN activation. (Auth, Cache,Cookies, History)<br>
--Improved: Simplified Backup/Restore of the act.dat on every boot by @bucanero.<br>
+-Improved: Simplified Backup/Restore of the act.dat on every boot.<br>
 
 ### Payload:
 -Added: Improved open_path logs.<br>
@@ -134,17 +146,17 @@ A exploit that allows the console to run unsigned code.<br>
 -Added: Support for Firmware 4.88.<br>
 
  ### Plugin:
--Added: Backup/Restore of the act.dat on every boot by @bucanero<br>
+-Added: Backup/Restore of the act.dat on every boot.<br>
  
  ### Payload:
 -Added: Dump PSID option to HFW tools.<br>
 
 ### Resources:
 -Added: Toggle automatic update option to HFW tools.<br>
--Added: New icons for updated HFW tools options. (Thanks @xps3riments)<br>
+-Added: New icons for updated HFW tools options.<br>
 -Updated: Text on theme selector in HFW tools.<br>
--Updated: RCO files to fix display issues with 4.89 only. (Thanks sandungas<br>
--Updated: layout_grid_table files for 480p and 272p to fix display issues in Remote Play with 4.89 only. (Thanks @sandungas)<br>
+-Updated: RCO files to fix display issues with 4.89 only.<br>
+-Updated: layout_grid_table files for 480p and 272p to fix display issues in Remote Play with 4.89 only.<br>
  
 # v3.0.3
 ### Global:
@@ -330,7 +342,7 @@ Resource
 -Added: Hybrid Firmware Tools available when HEN's activated.<br>
 -Added: Multiple path on boot_plugins & boot_plugins_kernel (HDD & USB).<br>
 -Added: PS2™ classics launcher support.<br>
--Added: RAP activation on the fly.  (usb000/exdata/<rap> or usb001/exdata/<rap>)<br>
+-Added: RAP activation on the fly. (usb000/exdata/<rap> or usb001/exdata/<rap>)<br>
 -Fixed: Explore_plugin.sprx patches.<br>
 -Fixed: Install All Packages.<br>
 -Fixed: Issue with official NPDRM content rif deletion and unable to boot error.<br>
